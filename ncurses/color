@@ -1,0 +1,8 @@
+keyword yellow
+default type green
+customer type ?
+string red
+number red
+include blue & red
+macro blue
+

@@ -1,0 +1,8 @@
+*.o
+*.so
+*.a
+*.core
+*.out
+*.swp
+*.pyc
+build/

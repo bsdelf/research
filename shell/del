@@ -1,0 +1,35 @@
+#!/bin/sh
+
+#env SHEN_TRASH_PATH
+
+if [ -z "$SHEN_TRASH_PATH" ]; then
+    SHEN_TRASH_PATH="${HOME}/.strash"
+fi
+
+if [ ! -d "$SHEN_TRASH_PATH" ]; then
+    echo "Trash path \""${SHEN_TRASH_PATH}"\" doesn't exist!"
+    
+    if mkdir $SHEN_TRASH_PATH; then
+	echo "Directory created successfully~"
+    else
+	echo "Failed to create the directory!"
+	exit 0
+    fi
+fi
+
+if [ -z $1 ]; then
+    echo "No file specified!"
+    exit 0
+fi
+
+FileTag=${1}"-["`date +%G.%m.%d-%H.%M.%S`"]"
+FilePath=${SHEN_TRASH_PATH}"/"${FileTag}
+
+echo $FilePath
+
+if [ `mv $1 $FilePath && rm -rf $1` ]; then
+    echo "Successfully deleted!"
+else
+    echo "Failed to delete!"
+fi
+

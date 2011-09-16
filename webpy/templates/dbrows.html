@@ -1,0 +1,13 @@
+$def with (rows)
+<ul>
+$for row in rows:
+    <li id="t$row.id">$row.id $row.name</li>
+</ul>
+
+<form method="post" action="insert">
+    <p>
+	<input type="text" name="id" /> 
+	<input type="text" name="name" /> 
+	<input type="submit" value="insert" />
+    </p>
+</form>

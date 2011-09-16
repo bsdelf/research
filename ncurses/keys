@@ -1,0 +1,60 @@
+enter	    13
+space	    32
+esc	    27
+backspace   127
+tab	    9
+ctrl+[a-z]  1~26
+
+ctrl~	    0
+ctrl1	    49
+ctrl2	    0
+ctrl3	    27
+ctrl4	    28
+ctrl5	    29
+ctrl6	    30
+ctrl7	    31
+ctrl8	    127
+ctrl9	    59
+ctrl0	    48
+ctrl-	    45
+ctrl=	    61
+ctrl\	    28
+
+ctrl,	    44
+ctrl.	    46
+ctrl/	    31
+
+ctrl;	    59
+ctrl'	    39
+
+ctrl[	    27
+ctrl]	    29
+
+alt+[a-z]   27 [a~z]
+
+home	    27 91 72 
+end	    27 91 70
+insert	    27 91 50 126 
+delete	    27 91 51 126
+pageup	    27 91 53 126
+pagedown    27 91 54 126
+
+up	    27 91 65
+down	    27 91 66
+right	    27 91 67
+left	    27 91 68
+
+f1	    27 79 80
+f2	    27 79 81
+f3	    27 79 82
+f4	    27 79 83
+
+f5	    27 91 49 53 126
+f6	    27 91 49 55 126
+f7	    27 91 49 56 126
+f8	    27 91 49 57 126
+
+f9	    27 91 50 48 126
+f10	    27 91 50 49 126
+f11	    27 91 50 51 126
+f12	    27 91 50 52 126

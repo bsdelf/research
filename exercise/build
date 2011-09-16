@@ -1,0 +1,3 @@
+clang++ -c -O2 TelBook.cpp -o TelBook.o
+clang++ -c -O2 main.cpp -o main.o
+clang++ -O2 TelBook.o main.o -o app

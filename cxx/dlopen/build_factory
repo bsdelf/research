@@ -1,0 +1,5 @@
+clang++ -O2 -c -x c++ BaseRole.h -o BaseRole.o
+clang++ -O2 -c -x c++ Sinbad.h -o Sinbad.o
+clang++ -O2 -c -x c++ Ogre.h -o Ogre.o
+clang++ -O2 -c -x c++ Factory.h -o Factory.o
+clang++ -O2 BaseRole.o Sinbad.o Ogre.o Factory.o -shared -o Factory.so
