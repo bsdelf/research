@@ -2,9 +2,11 @@
 #include "Object.h"
 #include <string.h>
 
+static void init(struct String* self);
 static void* String_ctor(void* _self, va_list* app)
 {
     struct String* self = _self;
+    init(self);
     const char* text = va_arg(*app, const char*);
 
     self->text = malloc(strlen(text)+1);
@@ -49,3 +51,8 @@ static const struct Class _String =
 };
 
 const void* String = &_String;
+
+static void init(struct String* self)
+{
+    self->class = &_String;
+}

@@ -14,7 +14,7 @@ void* new(const void* _class, ...)
     void* p = calloc(1, class->size);
     assert(p);
 
-    *(const struct Class**)p = class;
+    //*(const struct Class**)p = class;
 
     if (class->ctor) {
 	va_list ap;
