@@ -288,26 +288,26 @@ int main(int argc, char* argv[])
 
     int row, col;
     getmaxyx(stdscr, row, col);
-    stream << "row:" << row << endl;
-    stream << "col:" << col << endl;
+    stream << "row size:" << row << endl;
+    stream << "col size:" << col << endl;
+
+    WINDOW* lnu = create_newwin(row, 1, 0, 0);
+    wattron(lnu, A_REVERSE);
+    wnoutrefresh(lnu);
 
     WINDOW* top = create_newwin(1, col, 0, 0);
     wattron(top, A_REVERSE);
-
     {
 	int left = (col-6)/2;
 	string blank(col, ' ');
 	mvwaddnstr(top, 0, 0, blank.c_str(), blank.size());
 	mvwaddnstr(top, 0, left, "foomac", 6);
     }
-
     wnoutrefresh(top);
 
-    WINDOW* wnd = create_newwin(row-3, col, 1, 0);
-    wborder(wnd, '|', '|', '-', '-', '+', '+', '+', '+'); 
-    wrefresh(wnd);
+    WINDOW* wnd = create_newwin(row-1, col, 1, 1);
 
-    WINDOW* bot = create_newwin(1, col, row-2, 0);
+    WINDOW* bot = create_newwin(1, col, row-2, 1);
     wattron(bot, A_REVERSE);
 
     {
@@ -326,7 +326,7 @@ int main(int argc, char* argv[])
     wrefresh(cmd);
 
 
-    //wmove(wnd, 0, 0);
+    wmove(wnd, 0, 0);
     curs_set(1);
     
     int modify = -1;
@@ -354,10 +354,8 @@ int main(int argc, char* argv[])
 	    stream << ", " << flush;
 
 	}
-	
-	/*
 	// left
-	else if (false && a == 260)
+	if (ch == 260)
 	{
 	    int y, x;
 	    getyx(wnd, y, x);
@@ -365,17 +363,17 @@ int main(int argc, char* argv[])
 	    wrefresh(wnd);
 	}
 	// right
-	else if (a == 261)
+	else if (ch == 261)
 	{
 	}
 	else
 	{
 	    //printw("%c", a);
-	    waddch(wnd, a);
+	    waddch(wnd, ch);
 	}
 	wrefresh(wnd);
-	stream << a << ", " << flush;
-	*/
+	stream << ch << ", " << flush;
+	
     }
     
     endwin();
