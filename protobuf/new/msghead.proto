@@ -1,0 +1,6 @@
+package global;
+
+message Head {
+    required int32 magic = 1;
+    required int64 index = 2;
+}

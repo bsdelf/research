@@ -3,10 +3,10 @@ cmake_minimum_required(VERSION 2.8)
 project(MSGBENCH)
 
 # compile flags
-set(CMAKE_C_FLAGS_RELEASE "$ENV{CFLAGS} -O2 -Wall")
-set(CMAKE_C_FLAGS_DEBUG "$ENV{CFLAGS} -g -Wall")
-set(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O2 -Wall")
-set(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -g -Wall")
+set(CMAKE_C_FLAGS_RELEASE "$ENV{CFLAGS} -O2 -Wall -fno-strict-aliasing")
+set(CMAKE_C_FLAGS_DEBUG "$ENV{CFLAGS} -g -Wall -fno-strict-aliasing")
+set(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O2 -Wall -fno-strict-aliasing")
+set(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -g -Wall -fno-strict-aliasing")
 
 # options
 set(CMAKE_BUILD_TYPE "Release")
@@ -30,9 +30,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR})
 #add_library(foo SHARED ${LIB_FOO})
 #target_link_libraries(foo -pthread)
 
-file(GLOB_RECURSE EXE_MSGBENCH src/*.cpp)
+file(GLOB_RECURSE EXE_MSGBENCH src/*.cpp src/*.cc)
 add_executable(msgbench ${EXE_MSGBENCH})
-#target_link_libraries(foocli -lfoo)
+target_link_libraries(msgbench -lrt -lprotobuf)
 
 # messages
 message(STATUS "CMake:\t" ${CMAKE_VERSION})
