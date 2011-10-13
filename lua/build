@@ -1,1 +1,1 @@
-g++ lua.cpp -llua5.1  
+g++ -O2 lua.cpp -llua5.1  
