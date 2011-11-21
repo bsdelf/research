@@ -1,10 +1,17 @@
-void function(int a, int b, int c)
+#include <stdio.h>
+
+void overflow()
 {
-    char buffer1[10];
-    char buffer2[10];
+    int* ret;
+    ret = (char*)&ret+2;
+    (*ret) += 8;
 }
 
 void main()
 {
-    function(1, 2, 3);
+    int x = 9;
+    overflow();
+    x = 10;
+    printf("%d\n", x);
+    printf("%d\n", sizeof(char));
 }
