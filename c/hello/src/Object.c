@@ -1,49 +1,44 @@
 #include "Object.h"
 
-size_t sizeOf(const void* self)
-{
-    const struct Class* const * cp = self;
-    
-    assert(self && *cp);
-    return (*cp)->size;
+size_t sizeOf(const void* _data) {
+    const struct Meta* const* meta = _data;
+    assert(_data && *meta);
+
+    return (*meta)->size;
 }
 
-void* new(const void* _class, ...)
-{
-    const struct Class* class = _class;
-    void* p = calloc(1, class->size);
-    assert(p);
+void* create(const void* _meta, ...) {
+    const struct Meta* meta = _meta;
+    void* data = calloc(1, meta->size);
+    assert(data);
 
-    //*(const struct Class**)p = class;
+    *(const struct Meta**)data = meta;
 
-    if (class->ctor) {
-	va_list ap;
-	va_start(ap, _class);
-	p = class->ctor(p, &ap);
-	va_end(ap);
+    if (meta->ctor) {
+	va_list args;
+	va_start(args, _meta);
+	data = meta->ctor(data, &args);
+	va_end(args);
     }
 
-    return p;
+    return data;
 }
 
-void delete(void* self)
-{
-    const struct Class** cp = self;
-    if (self && *cp && (*cp)->dtor)
-	self = (*cp)->dtor(self);
-    free(self);
+void release(void* _data) {
+    const struct Meta** meta = _data;
+    if (_data && *meta && (*meta)->dtor)
+	_data = (*meta)->dtor(_data);
+    free(_data);
 }
 
-void* clone(const void* self)
-{
-    const struct Class* const* cp = self;
-    assert(self && *cp && (*cp)->clone);
-    return (*cp)->clone(self);
+void* clone(const void* _data) {
+    const struct Meta* const* meta = _data;
+    assert(_data && *meta && (*meta)->clone);
+    return (*meta)->clone(_data);
 }
 
-int differ(const void* self, const void* b)
-{
-    const struct Class* const* cp = self;
-    assert(self && *cp && (*cp)->differ);
-    return (*cp)->differ(self, b);
+int differ(const void* _data, const void* _other) {
+    const struct Meta* const* meta = _data;
+    assert(_data && *meta && (*meta)->differ);
+    return (*meta)->differ(_data, _other);
 }
