@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <iostream>
 #include "point.h"
 
 #include "String.h"
@@ -23,6 +24,7 @@
 
 #include "scx/RunTimer.hpp"
 
+using namespace std;
 using namespace scx;
 
 int main()
