@@ -4,32 +4,49 @@
 #include "BaseRole.h"
 #include "Ogre.h"
 #include "Sinbad.h"
+#include "Agent.h"
 
 extern "C"
 {
-    BaseRole* CreateRole(RoleType type)
+    void* CreateRole(RoleType type)
     {
-	BaseRole* role = NULL;
-	switch (type)
-	{
-	    case RoleOgre:
-		role = new Ogre();
-		break;
+        void* role = NULL;
+        switch (type)
+        {
+            case RoleOgre:
+                role = new Ogre();
+                break;
 
-	    case RoleSinbad:
-		role = new Sinbad();
-		break;
-	}
+            case RoleSinbad:
+                role = new Sinbad();
+                break;
+        }
 
-	return role;
+        return role;
     }
 
-    void DestroyRole(BaseRole* role)
+    void DestroyOgre(void* p)
     {
-	delete role;
-	role = NULL;
+        BaseRole* role = static_cast<Ogre*>(p);
+        delete role;
     }
 
+    void DestroySinbad(void* p)
+    {
+        Sinbad* role = static_cast<Sinbad*>(p);
+        delete role;
+    }
+
+    void* CreateAgent()
+    {
+        return new Agent;
+    }
+
+    void FreeAgent(void* _ptr)
+    {
+        Agent* ptr = (Agent*)_ptr;
+        delete ptr;
+    }
 }
 
 #endif

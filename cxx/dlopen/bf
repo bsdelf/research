@@ -1,0 +1,6 @@
+clang++ -O2 -fPIC -c -x c++ BaseRole.h -o BaseRole.o
+clang++ -O2 -fPIC -c -x c++ Sinbad.h -o Sinbad.o
+clang++ -O2 -fPIC -c -x c++ Ogre.h -o Ogre.o
+clang++ -O2 -fPIC -c -x c++ Factory.h -o Factory.o
+clang++ -O2 -fPIC -c -x c++ Agent.h -o Agent.o
+clang++ -O2 BaseRole.o Sinbad.o Ogre.o Factory.o Agent.o -fPIC -shared -o Factory.so
